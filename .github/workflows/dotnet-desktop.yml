@@ -28,10 +28,10 @@ jobs:
       run: dotnet build --configuration Release --no-restore
 
     - name: Publish
-      run: dotnet publish GreenCurtain/GreenCurtain.csproj --configuration Release --runtime win-x64 --self-contained false --output ./publish
+      run: dotnet publish GreenCurtain/GreenCurtain.csproj --configuration Release --runtime win-x64 --self-contained false -p:PublishSingleFile=true -p:PublishReadyToRun=true --output ./publish
 
     - name: Create ZIP
-      run: Compress-Archive -Path ./publish/* -DestinationPath GreenCurtain-win-x64.zip
+      run: Compress-Archive -Path ./publish/GreenCurtain.exe -DestinationPath GreenCurtain-win-x64.zip
 
     - name: Create Release
       uses: softprops/action-gh-release@v2

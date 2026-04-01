@@ -10,20 +10,13 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyTitle>绿幕</AssemblyTitle>
-    
-    <!-- 依赖框架的发布配置 --><!--
-    <SelfContained>false</SelfContained>
-    <PublishReadyToRun>false</PublishReadyToRun>
-    
-    --><!-- 禁用不需要的功能 --><!--
-    <BuiltInComInteropSupport>false</BuiltInComInteropSupport>
-    <EnableComHosting>false</EnableComHosting>-->
   </PropertyGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="favicon.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <SelfContained>false</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+  </PropertyGroup>
 
 </Project>
