@@ -19,4 +19,10 @@
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="favicon.ico">
+      <LogicalName>favicon.ico</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

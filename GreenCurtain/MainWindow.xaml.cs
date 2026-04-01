@@ -104,17 +104,28 @@ namespace GreenCurtain
             // 创建通知图标
             notifyIcon = new NotifyIcon();
             
-            // 尝试加载自定义图标
+            // 尝试加载图标
             try
             {
-                string iconPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "favicon.ico");
-                if (System.IO.File.Exists(iconPath))
+                // 先尝试从嵌入资源加载
+                var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                using var stream = assembly.GetManifestResourceStream("favicon.ico");
+                if (stream != null)
                 {
-                    notifyIcon.Icon = new System.Drawing.Icon(iconPath);
+                    notifyIcon.Icon = new System.Drawing.Icon(stream);
                 }
                 else
                 {
-                    notifyIcon.Icon = new System.Drawing.Icon(SystemIcons.Application, 40, 40);
+                    // 再尝试从文件加载
+                    string iconPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "favicon.ico");
+                    if (System.IO.File.Exists(iconPath))
+                    {
+                        notifyIcon.Icon = new System.Drawing.Icon(iconPath);
+                    }
+                    else
+                    {
+                        notifyIcon.Icon = new System.Drawing.Icon(SystemIcons.Application, 40, 40);
+                    }
                 }
             }
             catch
