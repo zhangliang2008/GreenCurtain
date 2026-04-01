@@ -1,0 +1,83 @@
+<Window x:Class="GreenCurtain.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GreenCurtain"
+        mc:Ignorable="d"
+        Title="绿幕设置"
+        Height="300"
+        Width="350"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- 显示器选择 -->
+        <Label Grid.Row="0" Grid.Column="0" Content="显示器:" VerticalAlignment="Center"/>
+        <ComboBox x:Name="ScreenComboBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,5" Height="25"/>
+
+        <!-- 透明度设置 -->
+        <Label Grid.Row="1" Grid.Column="0" Content="透明度:" VerticalAlignment="Center"/>
+        <Slider x:Name="OpacitySlider" Grid.Row="1" Grid.Column="1" Minimum="0.1" Maximum="1" Value="0.5" TickFrequency="0.01" IsSnapToTickEnabled="True" Margin="5,0" VerticalAlignment="Center"/>
+        <TextBlock x:Name="OpacityText" Grid.Row="1" Grid.Column="2" Text="50%" VerticalAlignment="Center" Margin="5,0,0,0" Width="45" TextAlignment="Right"/>
+
+        <!-- 颜色设置 -->
+        <Label Grid.Row="2" Grid.Column="0" Content="绿幕颜色:" VerticalAlignment="Center"/>
+        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="ColorButton" Grid.Column="0" Click="ColorButton_Click" Margin="5,5" Height="30"/>
+            <Button x:Name="PickColorButton" Grid.Column="1" Content="吸取" Click="PickColorButton_Click" Margin="5,5" Height="30" Width="50" ToolTip="从屏幕吸取颜色"/>
+        </Grid>
+
+        <!-- 中心亮度 -->
+        <Label Grid.Row="3" Grid.Column="0" Content="中心亮度:" VerticalAlignment="Center"/>
+        <Slider x:Name="CenterBrightnessSlider" Grid.Row="3" Grid.Column="1" Minimum="0" Maximum="255" Value="128" TickFrequency="16" IsSnapToTickEnabled="True" Margin="5,0" VerticalAlignment="Center"/>
+        <TextBlock x:Name="CenterBrightnessText" Grid.Row="3" Grid.Column="2" Text="128" VerticalAlignment="Center" Margin="5,0,0,0" Width="45" TextAlignment="Right"/>
+
+        <!-- 边缘亮度 -->
+        <Label Grid.Row="4" Grid.Column="0" Content="边缘亮度:" VerticalAlignment="Center"/>
+        <Slider x:Name="EdgeBrightnessSlider" Grid.Row="4" Grid.Column="1" Minimum="0" Maximum="255" Value="176" TickFrequency="16" IsSnapToTickEnabled="True" Margin="5,0" VerticalAlignment="Center"/>
+        <TextBlock x:Name="EdgeBrightnessText" Grid.Row="4" Grid.Column="2" Text="176" VerticalAlignment="Center" Margin="5,0,0,0" Width="45" TextAlignment="Right"/>
+
+        <!-- 分隔线 -->
+        <Separator Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10"/>
+
+        <!-- 快捷键设置 -->
+        <Label Grid.Row="6" Grid.Column="0" Content="快捷键:" VerticalAlignment="Center"/>
+        <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- 退出快捷键 -->
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="退出程序:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBox x:Name="ExitHotkeyTextBox" Grid.Row="0" Grid.Column="1" Text="Alt+Q" IsReadOnly="True" Margin="5,2" Height="25" KeyDown="ExitHotkeyTextBox_KeyDown" MouseDown="ExitHotkeyTextBox_MouseDown"/>
+
+            <!-- 切换快捷键 -->
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="显示/隐藏:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBox x:Name="ToggleHotkeyTextBox" Grid.Row="1" Grid.Column="1" Text="Alt+A" IsReadOnly="True" Margin="5,2" Height="25" KeyDown="ToggleHotkeyTextBox_KeyDown" MouseDown="ToggleHotkeyTextBox_MouseDown"/>
+        </Grid>
+    </Grid>
+</Window>
